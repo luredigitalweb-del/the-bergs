@@ -16,3 +16,9 @@ desktop.ini
 
 # Arquivos temporários (screenshots de teste, etc.)
 _*.png
+
+# Imagens ORIGINAIS (pesadas) — as versões otimizadas estão em public/assets/
+DSC*.jpeg
+image.png
+image copy*.png
+imagem_*-removebg-preview.png

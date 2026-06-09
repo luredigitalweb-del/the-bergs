@@ -1,106 +1,60 @@
-# The Bergs — Landing Page de Conversão
+# The Bergs — Landing Page (React + Vite)
 
-Landing page de **uma página, mobile-first**, feita para **tráfego pago (Meta Ads)** com um objetivo único: **gerar contato no WhatsApp**.
+Landing page de conversão da **The Bergs Centro Automotivo** (Fortaleza/CE).
+Mobile-first, focada em gerar contato no **WhatsApp**. Feita em **React + Vite**.
 
-Stack: **HTML + CSS + JS puro** (sem framework, sem build). Carrega rápido e faz deploy em qualquer lugar.
-
----
-
-## 📁 Arquivos
-
-```
-index.html      → estrutura + SEO + Pixel + Schema
-styles.css      → todo o visual (cores na seção :root no topo)
-script.js       → WhatsApp, Pixel, animações, formulário (config no topo)
-assets/
-  logo.png      → logo da The Bergs
-  fachada.jpg   → foto real da oficina
-README.md       → este arquivo
-```
-
----
-
-## ▶️ Como rodar localmente
-
-Como é estático, basta abrir o `index.html` no navegador. Para o mapa e as fontes funcionarem 100%, prefira servir por HTTP:
+## ▶️ Como rodar (desenvolvimento)
 
 ```bash
-# Opção 1 — Python
-python -m http.server 8000
-
-# Opção 2 — Node
-npx serve .
+npm install      # só na primeira vez
+npm run dev
 ```
 
-Depois acesse `http://localhost:8000`.
+Abre em **http://localhost:5199** (se a porta estiver ocupada, o Vite escolhe outra e mostra no terminal).
 
----
+## 🚀 Build de produção / deploy
 
-## 🚀 Deploy
+```bash
+npm run build    # gera a pasta dist/
+npm run preview  # testa o build localmente
+```
 
-Sobe direto em qualquer host estático (arraste a pasta):
+A pasta **`dist/`** é o site pronto (HTML/CSS/JS estáticos). Sobe em qualquer host:
+- **Vercel / Netlify**: importe o repositório. Build: `npm run build` · Publish: `dist`.
+- **Hostinger / cPanel**: envie o conteúdo de `dist/` para `public_html`.
 
-- **Netlify** → arraste a pasta em app.netlify.com/drop
-- **Vercel** → `vercel` na pasta, ou importe o repositório
-- **GitHub Pages** → suba os arquivos e ative Pages
-- **Hostinger / cPanel** → envie os arquivos para `public_html`
+## 📁 Estrutura
 
-Não precisa de build nem servidor Node em produção.
+```
+index.html              → HTML base (SEO, fontes, Meta Pixel, GTM, Schema.org)
+vite.config.js
+public/assets/          → imagens (logo, fachada, fotos do ambiente)
+src/
+  main.jsx              → ponto de entrada
+  App.jsx               → compõe as seções + reveal ao rolar
+  styles.css            → todo o visual (cores no :root no topo)
+  lib/whatsapp.js       → ⚙️ número, mensagens e rastreamento (EDITE AQUI)
+  components/
+    Header, Hero, Marquee, Steps, Services, Gallery,
+    About, Reviews, Local, Social, FinalCta, Footer, WhatsAppFloat
+```
 
----
+## ✏️ O que editar
 
-## ✅ O que PRECISA ser preenchido antes de publicar
+| O quê | Onde |
+|------|------|
+| Número e mensagens do WhatsApp | `src/lib/whatsapp.js` |
+| Cores / fontes | `src/styles.css` (bloco `:root` no topo) |
+| Serviços (textos, tags) | `src/components/Services.jsx` |
+| Fotos do ambiente | `src/components/Gallery.jsx` + arquivos em `public/assets/` |
+| Depoimentos | `src/components/Reviews.jsx` (array `AVALIACOES`) |
+| Instagram | `src/components/Social.jsx` (`@thebergs.c.a`) |
 
-Tudo está marcado no código com o símbolo **`➜`**. Itens:
+## 📊 Rastreamento
+- **Google Tag Manager:** ativo no `index.html` — container **`GTM-56962DJ8`**.
+- **Meta Pixel:** presente no `index.html` com `PIXEL_ID` de exemplo — **troque pelo ID real** (ou gerencie o Pixel dentro do GTM).
 
-| Onde | O quê | Arquivo |
-|------|-------|---------|
-| `fbq('init', 'PIXEL_ID')` | **Meta Pixel ID** | `index.html` (`<head>`) |
-| Bloco GTM/gtag comentado | **GTM/Google Ads** (opcional) | `index.html` (`<head>`) |
-| `WHATSAPP` | Confirmar número (já está `5585986011336`) | `script.js` (topo) |
-| Instagram `the.beg.s` | Confirmar o @ real | `index.html` (footer) |
-| Depoimentos | Trocar pelos prints/textos reais | `index.html` (seção depoimentos) |
-| CNPJ (comentado) | Adicionar se houver | `index.html` (footer) |
-| `https://www.thebergs.com.br/` | Trocar pelo domínio real (canonical/OG) | `index.html` (`<head>`) |
-| `geo` lat/long no Schema | Ajustar para a coordenada exata | `index.html` (JSON-LD) |
-
-> O **Meta Pixel** dispara automaticamente os eventos **`Lead`** e **`Contact`** a cada clique em qualquer botão de WhatsApp. Configure a conversão como `Lead` no Gerenciador de Anúncios.
-
----
-
-## ✏️ Como editar facilmente
-
-- **Cores:** `styles.css` → bloco `:root` no topo (verde, azul, WhatsApp, fundos).
-- **Número de WhatsApp e mensagens:** `script.js` → constantes `WHATSAPP` e `MENSAGENS` no topo.
-  - Cada serviço/botão tem uma mensagem própria (a equipe já recebe o contexto).
-- **Textos:** direto no `index.html` (está comentado por seção).
-- **Fotos:** troque os arquivos em `assets/` mantendo os nomes, ou ajuste os `src`.
-
-### Adicionar uma nova mensagem de WhatsApp
-1. Em `script.js`, adicione uma chave em `MENSAGENS`, ex.: `freio: "Olá! Quero serviço de freio."`
-2. No `index.html`, coloque `data-wa="freio"` no botão/link. Pronto — o link e o rastreamento são automáticos.
-
----
-
-## 🎨 Identidade visual
-
-Cores extraídas da **logo** (verde vibrante) e da **fachada real** (azul elétrico + portão verde-limão):
-
-- Verde marca `#3ddc4e` · Azul `#1f6fe0` · WhatsApp `#25d366` · Base grafite `#0c1015`
-
-Fontes: **Sora** (títulos) + **Inter** (corpo), via Google Fonts.
-
----
-
-## 📋 Checklist de conversão (já implementado)
-
-- [x] Diferencial "busca o carro + orçamento em vídeo" no hero, seção própria e CTAs
-- [x] Botão de WhatsApp flutuante sempre visível no mobile
-- [x] Mensagens de WhatsApp pré-preenchidas por serviço/contexto
-- [x] 5 serviços prioritários em destaque (★)
-- [x] Prova social (+9.000 carros, 4 anos, ~180/mês) com contador animado
-- [x] Meta Pixel com placeholder + evento `Lead` no clique
-- [x] Schema.org `AutoRepair` + Open Graph + Twitter Card
-- [x] Formulário leve que abre o WhatsApp já preenchido (sem reload)
-- [x] Mapa do Google incorporado + bairros atendidos
-- [x] Responsivo (375 / 768 / 1280) e otimizado para mobile
+## ⚠️ Antes de publicar
+- Trocar `PIXEL_ID` (ou remover, se o Pixel for via GTM).
+- Confirmar depoimentos reais do Google em `Reviews.jsx`.
+- Domínio real (canonical/OG no `index.html`) e CNPJ no rodapé (se houver).
