@@ -1,0 +1,18 @@
+# Dependências e build
+node_modules/
+dist/
+.vite/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Sistema operacional / editores
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Arquivos temporários (screenshots de teste, etc.)
+_*.png
