@@ -51,7 +51,7 @@ src/
 | Instagram | `src/components/Social.jsx` (`@thebergs.c.a`) |
 
 ## 📊 Rastreamento
-- **Google Tag Manager:** ativo no `index.html` — container **`GTM-56962DJ8`**.
+- **Google Tag Manager:** ativo no `index.html` — container **`GTM-NBDVTZ28`**.
 - **Meta Pixel:** presente no `index.html` com `PIXEL_ID` de exemplo — **troque pelo ID real** (ou gerencie o Pixel dentro do GTM).
 
 ## ⚠️ Antes de publicar
