@@ -22,7 +22,7 @@ export default function Local() {
               <li><span>{Ico(<><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></>)}</span>
                 <div>Segunda a sexta: 8h às 18h<br /><small>Sábado: 8h às 12h</small></div></li>
               <li><span>{Ico(<path d="M5 4h4l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" />)}</span>
-                <div>WhatsApp: (85) 98601-1336</div></li>
+                <div>WhatsApp: (85) 8523-8451</div></li>
             </ul>
             <p className="local__served"><strong>Atendemos toda a região:</strong> Aldeota,
               São João do Tauape, Pio XII, Aerolândia, Dias Macedo, Castelão, Vila União e Bairro de Fátima.</p>

@@ -4,7 +4,7 @@
    =============================================================== */
 
 /* Número (somente dígitos, com DDI 55) */
-export const WHATSAPP = "5585986011336";
+export const WHATSAPP = "558585238451";
 
 /* Mensagens pré-preenchidas por contexto (chave -> texto) */
 export const MENSAGENS = {
