@@ -10,7 +10,7 @@ export default function Footer() {
         </div>
         <div className="footer__col">
           <h4>Contato</h4>
-          <a {...waProps('hero')}>WhatsApp: (85) 98523-8451</a>
+          <a {...waProps('hero')}>WhatsApp: (85) 98601-1336</a>
           <a href="https://www.instagram.com/thebergs.c.a" target="_blank" rel="noopener">Instagram: @thebergs.c.a</a>
         </div>
         <div className="footer__col">
